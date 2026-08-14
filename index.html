@@ -1,0 +1,28 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>La Mini Ferme de Livry</title><style>
+:root{--rose:#f8dce5;--peche:#ffe3cf;--vert:#dcebd8;--bleu:#dcebf4;--creme:#fffaf2;--texte:#405044}
+*{box-sizing:border-box;scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;color:var(--texte);background:var(--creme)}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px;padding:10px 14px;background:#ffffffd9;backdrop-filter:blur(10px);border-radius:40px;box-shadow:0 8px 30px #0001}
+nav a{color:var(--texte);text-decoration:none;padding:10px 14px;border-radius:25px;font-size:14px}nav a:hover{background:var(--vert)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:90px 22px 60px;background:linear-gradient(180deg,var(--bleu),#f8eee5 55%,var(--vert))}
+.hero-content{max-width:800px}.logo{font-size:clamp(42px,9vw,92px);margin:15px 0 12px;letter-spacing:-3px}.hero p{font-size:clamp(18px,3vw,25px);max-width:650px;margin:0 auto 28px}
+.btn{display:inline-block;background:#8fae88;color:white;text-decoration:none;padding:15px 24px;border-radius:30px;font-weight:bold}.animals-hero{font-size:65px}
+.section{padding:100px 7%;max-width:1200px;margin:auto}.title{text-align:center;font-size:clamp(32px,5vw,54px);margin:0 0 14px}.sub{text-align:center;max-width:700px;margin:0 auto 50px;font-size:18px;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}.card{padding:28px 22px;border-radius:30px;box-shadow:0 12px 35px #0001;transition:.35s;display:block;color:var(--texte);text-decoration:none}.card:hover{transform:translateY(-8px) rotate(.5deg)}
+.pink{background:var(--rose)}.green{background:var(--vert)}.blue{background:var(--bleu)}.peach{background:var(--peche)}.animal{font-size:65px}
+.animal-image{height:180px;border-radius:23px;overflow:hidden;margin-bottom:15px;background:#fff8;display:flex;align-items:center;justify-content:center}.animal-image img{width:100%;height:100%;object-fit:cover}
+.card h3{font-size:24px;margin:12px 0 8px}.card p{line-height:1.55}.care{background:linear-gradient(135deg,#f6e1e7,#e2f0dc)}.care-item{background:#fff9;padding:20px;border-radius:24px;font-size:18px;margin:12px 0;line-height:1.5}footer{text-align:center;padding:45px 20px;background:var(--vert)}
+@media(max-width:700px){nav{width:calc(100% - 20px);overflow:auto}nav a{white-space:nowrap;padding:9px;font-size:12px}.section{padding:75px 6%}}
+</style></head><body>
+<nav><a href="#accueil">Accueil</a><a href="#animaux">Animaux</a><a href="#soins">Soins</a><a href="#activites">Activités</a><a href="#visite">Visite</a></nav>
+<header class="hero" id="accueil"><div class="hero-content"><div class="animals-hero">🐄 🐑 🐴 🐔 🐇</div><h1 class="logo">La Mini Ferme de Livry</h1><p>Une ferme éducative où petits et grands découvrent les animaux, la nature et leur bien-être.</p><a class="btn" href="#animaux">Découvrir la ferme ↓</a></div></header>
+<section class="section" id="animaux"><h2 class="title">🐾 Nos animaux</h2><p class="sub">Clique sur une catégorie pour découvrir tous les animaux de cette catégorie.</p><div class="cards">
+<a class="card pink" href="animaux.html?categorie=poules"><div class="animal">🐔</div><h3>Les poules</h3><p>Découvre toutes les poules de la ferme.</p></a>
+<a class="card blue" href="animaux.html?categorie=chevaux"><div class="animal">🐴</div><h3>Les chevaux</h3><p>Découvre tous les chevaux de la ferme.</p></a>
+<a class="card green" href="animaux.html?categorie=moutons"><div class="animal">🐑</div><h3>Les moutons</h3><p>Découvre tous les moutons de la ferme.</p></a>
+<a class="card peach" href="animaux.html?categorie=vaches"><div class="animal">🐄</div><h3>Les vaches</h3><p>Découvre toutes les vaches de la ferme.</p></a>
+<a class="card pink" href="animaux.html?categorie=lapins"><div class="animal">🐇</div><h3>Les lapins</h3><p>Découvre tous les lapins de la ferme.</p></a></div></section>
+<section class="section care" id="soins"><h2 class="title">❤️ Les soins animaliers</h2><p class="sub">Le bien-être de nos animaux est au cœur de la vie de la ferme.</p>
+<div class="care-item">🌿 <b>Une alimentation adaptée</b><br>Chaque animal reçoit ce dont il a besoin.</div><div class="care-item">💧 <b>De l'eau fraîche</b><br>Un accès permanent à une eau propre.</div><div class="care-item">🧹 <b>Des espaces propres</b><br>Les habitats sont entretenus régulièrement.</div><div class="care-item">🩺 <b>Un suivi attentif</b><br>La santé des animaux est surveillée.</div></section>
+<section class="section" id="activites"><h2 class="title">🌱 Les activités</h2><p class="sub">Une ferme éducative, c'est aussi apprendre en observant et en participant.</p></section>
+<section class="section" id="visite"><div style="text-align:center;background:linear-gradient(135deg,#dcebf4,#fff0dc);border-radius:45px;padding:70px 25px"><h2 class="title">📅 Préparez votre visite</h2><p class="sub">Venez découvrir La Mini Ferme de Livry en famille.</p></div></section>
+<footer>La Mini Ferme de Livry 🐄🌸</footer></body></html>

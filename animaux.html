@@ -1,0 +1,46 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Animaux — La Mini Ferme de Livry</title><style>
+:root{--rose:#f8dce5;--peche:#ffe3cf;--vert:#dcebd8;--bleu:#dcebf4;--creme:#fffaf2;--texte:#405044}
+*{box-sizing:border-box;scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;color:var(--texte);background:var(--creme)}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px;padding:10px 14px;background:#ffffffd9;backdrop-filter:blur(10px);border-radius:40px;box-shadow:0 8px 30px #0001}
+nav a{color:var(--texte);text-decoration:none;padding:10px 14px;border-radius:25px;font-size:14px}nav a:hover{background:var(--vert)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:90px 22px 60px;background:linear-gradient(180deg,var(--bleu),#f8eee5 55%,var(--vert))}
+.hero-content{max-width:800px}.logo{font-size:clamp(42px,9vw,92px);margin:15px 0 12px;letter-spacing:-3px}.hero p{font-size:clamp(18px,3vw,25px);max-width:650px;margin:0 auto 28px}
+.btn{display:inline-block;background:#8fae88;color:white;text-decoration:none;padding:15px 24px;border-radius:30px;font-weight:bold}.animals-hero{font-size:65px}
+.section{padding:100px 7%;max-width:1200px;margin:auto}.title{text-align:center;font-size:clamp(32px,5vw,54px);margin:0 0 14px}.sub{text-align:center;max-width:700px;margin:0 auto 50px;font-size:18px;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}.card{padding:28px 22px;border-radius:30px;box-shadow:0 12px 35px #0001;transition:.35s;display:block;color:var(--texte);text-decoration:none}.card:hover{transform:translateY(-8px) rotate(.5deg)}
+.pink{background:var(--rose)}.green{background:var(--vert)}.blue{background:var(--bleu)}.peach{background:var(--peche)}.animal{font-size:65px}
+.animal-image{height:180px;border-radius:23px;overflow:hidden;margin-bottom:15px;background:#fff8;display:flex;align-items:center;justify-content:center}.animal-image img{width:100%;height:100%;object-fit:cover}
+.card h3{font-size:24px;margin:12px 0 8px}.card p{line-height:1.55}.care{background:linear-gradient(135deg,#f6e1e7,#e2f0dc)}.care-item{background:#fff9;padding:20px;border-radius:24px;font-size:18px;margin:12px 0;line-height:1.5}footer{text-align:center;padding:45px 20px;background:var(--vert)}
+@media(max-width:700px){nav{width:calc(100% - 20px);overflow:auto}nav a{white-space:nowrap;padding:9px;font-size:12px}.section{padding:75px 6%}}
+</style></head><body>
+<header class="hero" style="min-height:auto;padding-top:80px;padding-bottom:55px"><div class="hero-content"><a class="btn" href="index.html#animaux">← Retour aux animaux</a><div class="animals-hero" id="categoryEmoji">🐾</div><h1 class="logo" id="categoryTitle">Nos animaux</h1><p>Découvrez les animaux de la ferme.</p></div></header>
+<main class="section"><div class="cards" id="animalCards"><p>Chargement des animaux…</p></div></main><footer>La Mini Ferme de Livry 🐄🌸</footer><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+const firebaseConfig={
+apiKey:"AIzaSyByUVIwb6yUNtNtn4FoZ1-MqbobkmcqyJ8",
+authDomain:"la-mini-ferme-de-livry.firebaseapp.com",
+projectId:"la-mini-ferme-de-livry",
+storageBucket:"la-mini-ferme-de-livry.firebasestorage.app",
+messagingSenderId:"236756045571",
+appId:"1:236756045571:web:734d39377aaa7eeb076336",
+measurementId:"G-E3LLYNRMQS"};
+const db=getFirestore(initializeApp(firebaseConfig));
+const meta={poules:["🐔","Les poules","pink"],chevaux:["🐴","Les chevaux","blue"],moutons:["🐑","Les moutons","green"],vaches:["🐄","Les vaches","peach"],lapins:["🐇","Les lapins","pink"]};
+const cat=new URLSearchParams(location.search).get("categorie")||"poules";
+const m=meta[cat]||meta.poules;
+document.querySelector("#categoryEmoji").textContent=m[0];
+document.querySelector("#categoryTitle").textContent=m[1];
+async function load(){
+ const box=document.querySelector("#animalCards");
+ try{
+  const snap=await getDocs(collection(db,"animaux",cat,"individus"));
+  const arr=snap.docs.map(d=>d.data()).sort((a,b)=>(a.ordre??9999)-(b.ordre??9999));
+  if(!arr.length){box.innerHTML="<p>Aucun animal n'est encore enregistré.</p>";return;}
+  box.innerHTML=arr.map(a=>`<article class="card ${m[2]}">
+  ${a.image?`<div class="animal-image"><img src="${a.image}" alt="${a.nom||"Animal"}"></div>`:`<div class="animal">${m[0]}</div>`}
+  <h3>${a.nom||"Sans nom"}</h3><p>${a.description||""}</p></article>`).join("");
+ }catch(e){console.error(e);box.innerHTML="<p>Impossible de charger les animaux. Vérifie Firestore.</p>";}
+}
+load();
+</script></body></html>

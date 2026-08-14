@@ -1,0 +1,14 @@
+Firestore à créer :
+animaux/poules/individus/Marguerite
+animaux/chevaux/individus/...
+animaux/moutons/individus/...
+animaux/vaches/individus/...
+animaux/lapins/individus/...
+
+Champs de chaque document :
+nom : texte
+description : texte
+image : URL publique Firebase Storage (optionnelle)
+ordre : nombre (optionnel)
+
+Le site n'a aucune interface de modification : les changements se font uniquement dans Firebase.
